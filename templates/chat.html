@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - Cocktail Advisor{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Main Chat Section -->
+    <div class="md:col-span-2">
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="h-[600px] overflow-y-auto p-6 space-y-4">
+                <div class="message system">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-robot text-purple-600 mr-2"></i>
+                        <span class="text-sm text-gray-500">System</span>
+                    </div>
+                    <div class="message-content">
+                        Welcome to the Professional Cocktail Advisor! How can I help you today?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="border-t bg-gray-50 p-4">
+                <form id="chat-form" class="flex gap-4">
+                    <div class="flex-1 relative">
+                        <input 
+                            type="text" 
+                            id="message" 
+                            class="w-full rounded-lg border border-gray-300 pl-4 pr-10 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Ask about cocktails..."
+                            required
+                        >
+                        <span id="typing-indicator" class="hidden absolute right-3 top-3">
+                            <i class="fas fa-circle-notch fa-spin text-purple-500"></i>
+                        </span>
+                    </div>
+                    <button 
+                        type="submit"
+                        class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center"
+                    >
+                        <span>Send</span>
+                        <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="md:col-span-1 space-y-6">
+        <!-- User Preferences -->
+        <div class="bg-white rounded-xl shadow-xl p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Your Preferences</h2>
+                <button 
+                    id="edit-preferences"
+                    class="text-purple-600 hover:text-purple-700"
+                >
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+            <div id="preferences-list" class="space-y-2">
+                <!-- Preferences will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Recent Recommendations -->
+        <div class="bg-white rounded-xl shadow-xl p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Recent Recommendations</h2>
+            <div id="recent-recommendations" class="space-y-4">
+                <!-- Recommendations will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preferences Modal -->
+<div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl p-6 w-full max-w-md modal-content">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold text-gray-800">Edit Preferences</h2>
+            <button id="close-preferences" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="preferences-form" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 mb-2">Favorite Ingredients</label>
+                <div class="preference-tags" id="favorite-ingredients-tags"></div>
+                <input 
+                    type="text" 
+                    id="favorite-ingredients-input"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 mt-2"
+                    placeholder="Type and press Enter to add"
+                >
+            </div>
+            <div>
+                <label class="block text-gray-700 mb-2">Allergies or Restrictions</label>
+                <div class="preference-tags" id="allergies-tags"></div>
+                <input 
+                    type="text" 
+                    id="allergies-input"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 mt-2"
+                    placeholder="Type and press Enter to add"
+                >
+            </div>
+            <div class="flex justify-end gap-4 mt-6">
+                <button 
+                    type="button"
+                    id="cancel-preferences"
+                    class="px-4 py-2 text-gray-600 hover:text-gray-800"
+                >
+                    Cancel
+                </button>
+                <button 
+                    type="submit"
+                    class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700"
+                >
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', path='/js/chat.js') }}"></script>
+{% endblock %}

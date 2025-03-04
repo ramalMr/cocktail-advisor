@@ -1,0 +1,182 @@
+/* Base styles */
+:root {
+    --primary-color: #9333ea;
+    --primary-light: #a855f7;
+    --primary-dark: #7e22ce;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Message styles */
+.message {
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 85%;
+    animation: messageSlide 0.3s ease-out;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.user {
+    background-color: #f3e8ff;
+    margin-left: auto;
+}
+
+.message.assistant {
+    background-color: #f8fafc;
+    margin-right: auto;
+}
+
+.message.system {
+    background-color: #fef3c7;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.message-content {
+    line-height: 1.5;
+    color: #1f2937;
+}
+
+/* Preference tags */
+.preference-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 2rem;
+}
+
+.preference-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background-color: #f3e8ff;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+    animation: tagPop 0.2s ease-out;
+}
+
+@keyframes tagPop {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.preference-tag button {
+    margin-left: 0.5rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.preference-tag button:hover {
+    opacity: 1;
+}
+
+/* Cocktail card styles */
+.cocktail-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.cocktail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.cocktail-card h3 {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cocktail-card .ingredients {
+    color: #4b5563;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.cocktail-card .instructions {
+    color: #1f2937;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Loading effects */
+.loading-dots::after {
+    content: '.';
+    animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60% { content: '...'; }
+    80%, 100% { content: ''; }
+}
+
+/* Modal animations */
+.modal-content {
+    animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .message {
+        max-width: 90%;
+    }
+    
+    .grid {
+        gap: 1rem;
+    }
+}

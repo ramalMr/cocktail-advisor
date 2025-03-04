@@ -1,0 +1,43 @@
+
+black
+isort
+flake
+mypy
+pytest-cov
+pytest-mock
+pytest-asyncio
+pytest-xdist
+pytest-env
+
+# Debugging
+ipython2
+ipdb13
+debugpy
+
+# Documentation
+sphinx
+sphinx-rtd-theme
+sphinx-autodoc-typehints
+mkdocs
+mkdocs-material
+
+# Code Quality
+bandit
+safety
+radon
+coverage
+
+# Type Checking
+types-requests
+types-python-dateutil
+types-PyYAML
+types-redis
+
+# Development Database
+aiosqlite
+
+# API Development
+httpie
+
+# Performance Testing
+locust
